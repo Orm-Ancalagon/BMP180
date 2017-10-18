@@ -1,10 +1,9 @@
-import Adafruit_BMP.BMP085 as BMP085
-import time
-import numpy
-import itertools
+import Adafruit_BMP.BMP085 as BMP085 # Using the Adafruit BMP sensor library
+import time	
+import numpy 
 
-sensor = BMP085.BMP085()
-t = time.asctime(time.localtime(time.time())) 
+sensor = BMP085.BMP085() # Defines sensor from which to read
+t = time.asctime(time.localtime(time.time())) # Stores local time in t
 
 temperature = sensor.read_temperature()
 float(temperature)
@@ -17,7 +16,3 @@ array = numpy.array((temperature, pressure, t),
 
 numpy.savetxt("output.csv", array, fmt = ["%.2f",]*2 + ["%s"],  delimiter=",")
 
-#print('Temp = {0:0.2f} *C'.format(sensor.read_temperature()))
-#print('Pressure = {0:0.2f} Pa'.format(sensor.read_pressure()))
-#print('Altitude = {0:0.2f} m'.format(sensor.read_altitude()))
-#print('Sealevel Pressure = {0:0.2f} Pa'.format(sensor.read_sealevel_pressure())) 
