@@ -11,7 +11,7 @@ float(temperature)
 pressure = sensor.read_pressure()
 float(pressure)
 
-array = numpy.array((temperature, pressure, t), 
+array = numpy.array(zip(temperature, pressure, t), 
 		dtype = [("temperature", float), ("pressure", float), ("t", "S16")]) 
 
 numpy.savetxt("output.csv", array, fmt = ["%.2f",]*2 + ["%s"],  delimiter=",")
