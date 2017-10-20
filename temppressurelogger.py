@@ -8,9 +8,12 @@ t = time.asctime(time.localtime(time.time())) # Stores local time in t
 temperature = sensor.read_temperature()
 pressure = sensor.read_pressure()
 
-data = np.array([[temperature], [pressure], [t]])  
-np.dtype([("temperature", float), ("pressure", float), ("t", "S20")])
-#print(array.shape)
+sensorData = np.array([[temperature], [pressure]]) 
+sensorData = sensorData.reshape(1,2)
+timeData = np.array([[t]], dtype = "S")
+timeData = timeData.reshape(1,1)
 
-np.savetxt("output.csv", data.reshape((1,3)), fmt = "%.2f %.2f %s", delimiter=",")
+fullArray = np.hstack((sensorData, timeData))
+#print fullArray
 
+np.savetxt("output.csv", fullArray, fmt = "%s",  delimiter=",")
