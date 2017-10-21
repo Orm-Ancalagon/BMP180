@@ -16,4 +16,5 @@ timeData = timeData.reshape(1,1)
 fullArray = np.hstack((sensorData, timeData))
 #print fullArray
 
-np.savetxt("output.csv", fullArray, fmt = "%s",  delimiter=",")
+with open("output.csv", "a") as output:
+	np.savetxt(output, fullArray, fmt = "%s",  delimiter=",")
